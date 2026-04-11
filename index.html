@@ -7,30 +7,424 @@
     <title>Ecclesia | AI Engineering Platform — Multi-Agent Software Factory</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Smooth scroll behavior & subtle animations -->
-     <link rel="stylesheet" href="style/indexStyle.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0a0f1f, #03060c);
+            color: #eef5ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 6%;
+            background: rgba(3, 6, 12, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1f2a48;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #00F2FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .logo i {
+            color: #00F2FF;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            margin-right: 6px;
+        }
+
+        /* desktop nav links */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #cbd5ff;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #00F2FF;
+        }
+
+        .dashboard-btn {
+            background: linear-gradient(95deg, #1e2a5e, #0f172f);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #2d3a6e;
+            font-weight: 600;
+        }
+
+        .dashboard-btn:hover {
+            background: #00F2FF20;
+            border-color: #00F2FF;
+            color: #00F2FF !important;
+        }
+
+        /* hamburger icon (hidden on desktop) */
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #eef5ff;
+            transition: 0.2s;
+        }
+
+        /* mobile responsive breakpoint */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1100;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: rgba(5, 10, 22, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                padding: 2rem 1.5rem;
+                transition: right 0.35s ease-in-out;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+                border-left: 1px solid #2a3650;
+                z-index: 1050;
+                align-items: flex-start;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                width: 100%;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #1f2a48;
+            }
+
+            .dashboard-btn {
+                display: inline-block;
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+
+            /* body scroll lock when menu open */
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            /* overlay background */
+            .nav-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+                z-index: 1040;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.2s;
+            }
+
+            .nav-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Hero & rest of styling (preserved from original with improvements) */
+        .hero {
+            text-align: center;
+            padding: 100px 6% 80px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #00F2FF20;
+            border: 1px solid #2a6b7c;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-bottom: 28px;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #a0c0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            max-width: 900px;
+            margin: 0 auto 24px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            color: #b9c8ff;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            background: linear-gradient(95deg, #00c9ff, #0077ff);
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: 0.2s;
+            display: inline-block;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-outline {
+            background: transparent;
+            border: 1px solid #4f7aff;
+            color: #bdd4ff;
+        }
+
+        .cta-outline:hover {
+            background: #0077ff20;
+            border-color: #00F2FF;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #9bb1e6;
+            margin-bottom: 48px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 6%;
+        }
+
+        .feature-card {
+            background: #0d1428aa;
+            backdrop-filter: blur(8px);
+            border: 1px solid #232e4a;
+            border-radius: 32px;
+            padding: 28px 20px;
+            transition: 0.2s;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00F2FF;
+        }
+
+        .pipeline-demo {
+            background: #0b1120aa;
+            border-radius: 48px;
+            padding: 32px 24px;
+            border: 1px solid #2a3650;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pipeline-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            background: #050a14;
+            border-radius: 28px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #1f2a48;
+        }
+
+        .about-grid {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 6%;
+            flex-wrap: wrap;
+        }
+
+        .stats {
+            display: flex;
+            gap: 28px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00F2FF;
+        }
+
+        .tech-stack {
+            text-align: center;
+            padding: 60px 6%;
+        }
+
+        .tech-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 32px;
+        }
+
+        .tech-icons span {
+            background: #0f172f;
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid #2a3650;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .member {
+            background: #0b1020;
+            padding: 24px;
+            border-radius: 32px;
+            text-align: center;
+            width: 200px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 6% 30px;
+            border-top: 1px solid #1f2a48;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 28px;
+        }
+
+        .footer-links a {
+            color: #a0b5e6;
+            text-decoration: none;
+        }
+
+        @media (max-width: 680px) {
+            .pipeline-steps {
+                flex-direction: column;
+            }
+            .feature-grid {
+                padding: 0 4%;
+            }
+            .hero {
+                padding: 70px 5% 60px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <nav class="navbar">
         <div class="logo"><i class="fas fa-microchip"></i> Ecclesia</div>
-        <div class="nav-links">
+        <div class="hamburger" id="hamburgerIcon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
             <a href="#features">Features</a>
             <a href="#pipeline">Live Pipeline</a>
             <a href="#tech">Stack</a>
             <a href="#about">About</a>
             <a href="dashboard.html" class="dashboard-btn">Dashboard →</a>
         </div>
+        <!-- overlay for mobile backdrop -->
+        <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
     <section class="hero">
-        <div class="hero-badge"><i class="fas fa-robot"></i> v2.0 — multi-agent orchestration</div>
         <h1>Build Software Like a Coordinated AI Team</h1>
         <p>Ecclesia transforms AI into a structured engineering system where Architect, Developer, and Tester agents
             collaborate to build production-ready applications with full observability.</p>
         <div class="cta-group">
-            <a href="dashboard.html" class="cta-btn">Launch Studio →</a>
+            <a href="dashboard.html" class="cta-btn">Dashboard →</a>
             <a href="#pipeline" class="cta-btn cta-outline">Watch Live Demo</a>
         </div>
     </section>
@@ -118,9 +512,6 @@
                     scalability, and production-ready systems using an architecture-first methodology. Every commit is reviewed,
                     tested, and deployed through AI-driven pull requests. Our platform integrates with GitHub, GitLab, and cloud
                     providers to deliver end-to-end automation.</p>
-                <div style="margin-top: 28px;">
-                    <a href="#" style="color:#00F2FF;">Explore Whitepaper →</a>
-                </div>
             </div>
             <div class="stats" style="flex:1; min-width: 240px;">
                 <div class="stat">
@@ -154,7 +545,6 @@
         </div>
     </section>
 
-
     <!-- Team / Advisors (adds credibility) -->
     <section class="team">
         <h2 class="section-title">Built by engineers, for AI-native teams</h2>
@@ -162,23 +552,23 @@
         <div class="team-grid">
             <div class="member">
                 <i class="fas fa-user-astronaut"></i>
-                <h4>Dr. Elena Voss</h4>
-                <p>Ex-DeepMind, AI Architect</p>
+                <h4>Syed Younusuddin</h4>
+                <p>System Architect</p>
             </div>
             <div class="member">
                 <i class="fas fa-laptop-code"></i>
-                <h4>Marcus Chen</h4>
-                <p>Principal Engineer, ex-Uber</p>
+                <h4>Samala Vadanaika</h4>
+                <p>UI/UX Designer</p>
             </div>
             <div class="member">
                 <i class="fas fa-brain"></i>
-                <h4>Sophia Laurent</h4>
-                <p>ML Systems, Stanford</p>
+                <h4>Putta Karthikeya</h4>
+                <p>Frontend Engineer</p>
             </div>
             <div class="member">
                 <i class="fas fa-chalkboard-user"></i>
-                <h4>James Okafor</h4>
-                <p>DevRel & Open Source</p>
+                <h4>Madam Sangameswar</h4>
+                <p>Frontend Engineer</p>
             </div>
         </div>
     </section>
@@ -208,8 +598,116 @@
         <p style="margin-top: 12px; font-size: 0.75rem; color: #4f6085;"><i class="fas fa-microchip"></i> Orchestrated by Architect, Developer, Tester — truly collaborative AI.</p>
     </footer>
 
-    <!-- tiny live simulation for pipeline steps animation (optional) -->
-    <script src="script/indexscript.js"></script>
+    <!-- Responsive Navbar + smooth toggle logic & pipeline micro-interaction -->
+    <script>
+        (function() {
+            const hamburger = document.getElementById('hamburgerIcon');
+            const navLinks = document.getElementById('navLinks');
+            const overlay = document.getElementById('navOverlay');
+            const body = document.body;
+
+            // Helper to close menu
+            function closeMenu() {
+                if (navLinks && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    if (overlay) overlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    // reset hamburger icon
+                    if (hamburger) {
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            }
+
+            function openMenu() {
+                if (navLinks) {
+                    navLinks.classList.add('active');
+                    if (overlay) overlay.classList.add('active');
+                    body.classList.add('menu-open');
+                    if (hamburger) {
+                        hamburger.innerHTML = '<i class="fas fa-times"></i>';
+                    }
+                }
+            }
+
+            function toggleMenu() {
+                if (navLinks && navLinks.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            }
+
+            if (hamburger) {
+                hamburger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+            }
+
+            // Close menu when clicking on overlay
+            if (overlay) {
+                overlay.addEventListener('click', closeMenu);
+            }
+
+            // Close menu when clicking on any nav link (for better mobile UX)
+            if (navLinks) {
+                const allLinks = navLinks.querySelectorAll('a');
+                allLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        // Only close if it's a normal navigation (not dashboard? it's fine)
+                        // prevent default only if needed, but we want to close menu smoothly
+                        if (window.innerWidth <= 768) {
+                            // small delay to allow navigation but still close
+                            setTimeout(() => {
+                                closeMenu();
+                            }, 100);
+                        }
+                    });
+                });
+            }
+
+            // On window resize, if desktop view and menu is open, close it to avoid sticky state
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    if (navLinks && navLinks.classList.contains('active')) {
+                        closeMenu();
+                    }
+                } else {
+                    // ensure if overlay is out of sync
+                    if (!navLinks || !navLinks.classList.contains('active')) {
+                        if (overlay) overlay.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    }
+                }
+            });
+
+            // additional safety: close menu if click outside via overlay handled, but also escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks && navLinks.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+        })();
+
+        // small live animation for pipeline steps (just visual spice)
+        const stepDivs = document.querySelectorAll('.step');
+        if (stepDivs.length) {
+            let idx = 0;
+            setInterval(() => {
+                stepDivs.forEach((step, i) => {
+                    if (i === idx) {
+                        step.style.border = '1px solid #00F2FF';
+                        step.style.boxShadow = '0 0 10px #00F2FF20';
+                    } else {
+                        step.style.border = '1px solid #1f2a48';
+                        step.style.boxShadow = 'none';
+                    }
+                });
+                idx = (idx + 1) % stepDivs.length;
+            }, 2200);
+        }
+    </script>
 </body>
 
 </html>
