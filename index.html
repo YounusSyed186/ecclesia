@@ -1,117 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
-    <title>Ecclesia | AI Orchestrator — Neural Core</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Ecclesia | AI Engineering Platform — Multi-Agent Software Factory</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Smooth scroll behavior & subtle animations -->
+     <link rel="stylesheet" href="style/indexStyle.css">
 </head>
+
 <body>
 
-    <canvas id="waveCanvas" class="wave-canvas"></canvas>
+    <nav class="navbar">
+        <div class="logo"><i class="fas fa-microchip"></i> Ecclesia</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pipeline">Live Pipeline</a>
+            <a href="#tech">Stack</a>
+            <a href="#about">About</a>
+            <a href="dashboard.html" class="dashboard-btn">Dashboard →</a>
+        </div>
+    </nav>
 
-    <!-- API Modal (optional but present) -->
-    <div class="modal-blur" id="apiModal">
-        <div class="modal-panel">
-            <h3 style="margin-bottom: 12px;"><i class="fas fa-key" style="color:#00F2FF;"></i> API Credentials</h3>
-            <input type="text" id="openaiKey" placeholder="OpenAI Key (optional)">
-            <input type="text" id="geminiKey" placeholder="Gemini Key (optional)">
-            <div class="flex-btns">
-                <button id="demoModeBtn" class="btn-outline"><i class="fas fa-flask"></i> Demo Mode</button>
-                <button id="saveKeysBtn" class="btn-primary">Save</button>
+    <section class="hero">
+        <div class="hero-badge"><i class="fas fa-robot"></i> v2.0 — multi-agent orchestration</div>
+        <h1>Build Software Like a Coordinated AI Team</h1>
+        <p>Ecclesia transforms AI into a structured engineering system where Architect, Developer, and Tester agents
+            collaborate to build production-ready applications with full observability.</p>
+        <div class="cta-group">
+            <a href="dashboard.html" class="cta-btn">Launch Studio →</a>
+            <a href="#pipeline" class="cta-btn cta-outline">Watch Live Demo</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 class="section-title">Engineered for Real Development</h2>
+        <p class="section-sub">From AI prototypes to enterprise-grade software — multi-agent collaboration at scale</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users-gear"></i></div>
+                <h3>Role-Based AI</h3>
+                <p>Architect, Frontend/Backend Dev, QA, DevOps agents with specific capabilities and memory.</p>
             </div>
-            <p style="font-size: 0.65rem; margin-top: 1rem; color: #6c86a3;">Local storage only · simulated orchestration</p>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-diagram-project"></i></div>
+                <h3>Architecture First</h3>
+                <p>Design system blueprints, UML, and data flows before a single line of code is generated.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Live Pipeline</h3>
+                <p>Real-time visualization of AI commits, reviews, test cycles & deployments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-cloud-arrow-up"></i></div>
+                <h3>Scalable Systems</h3>
+                <p>From micro frontends to event-driven backends — grow without technical debt.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-vial"></i></div>
+                <h3>Testing Layer</h3>
+                <p>Autonomous QA agent writes unit, integration & e2e tests. Coverage > 85%.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                <h3>Full Control</h3>
+                <p>Human-in-the-loop reviews, rollback any agent decision, audit logs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE PIPELINE DEMO SECTION -->
+    <section id="pipeline" style="padding: 20px 6% 80px 6%;">
+        <div class="pipeline-demo">
+            <h3 style="font-size: 1.8rem; text-align: center;"><i class="fas fa-stream"></i> Real-time AI Engineering Pipeline</h3>
+            <p style="text-align: center; color: #8d9fdb; margin-bottom: 20px;">Agents collaborating in your workspace — live simulation</p>
+            <div class="pipeline-steps">
+                <div class="step">
+                    <i class="fas fa-drafting-compass"></i>
+                    <h4>Architect</h4>
+                    <small>Generates system design + API contracts</small>
+                    <div style="margin-top: 10px; font-size: 0.7rem; background: #00F2FF20; border-radius: 20px; padding: 4px;">✅ ready</div>
+                </div>
+                <div class="step">
+                    <i class="fas fa-code"></i>
+                    <h4>Developer</h4>
+                    <small>Writes backend + frontend modules</small>
+                    <div style="margin-top: 10px; font-size: 0.7rem; background: #ffe10020; border-radius: 20px;">⚙️ building</div>
+                </div>
+                <div class="step">
+                    <i class="fas fa-bug"></i>
+                    <h4>Tester</h4>
+                    <small>Simultaneous test generation</small>
+                    <div style="margin-top: 10px; font-size: 0.7rem; background: #00F2FF20;">🧪 94% pass</div>
+                </div>
+                <div class="step">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Deployer</h4>
+                    <small>Preview & production environment</small>
+                    <div style="margin-top: 10px;">🔁 staging ready</div>
+                </div>
+            </div>
+            <div style="background: #03060c; border-radius: 24px; margin-top: 28px; padding: 16px; font-family: monospace; font-size: 0.8rem; border: 1px solid #2a3650;">
+                <i class="fas fa-terminal"></i> [Agent Orchestrator] → PR #42 merged by QA · Build #203 passed · Deployed to ecclesia.cloud
+            </div>
+        </div>
+    </section>
+
+    <!-- about & stats expanded -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 class="section-title" style="text-align: left;">From Prompting to Engineering</h2>
+                <p>Ecclesia replaces chaotic single-prompt coding with structured AI collaboration. It ensures transparency,
+                    scalability, and production-ready systems using an architecture-first methodology. Every commit is reviewed,
+                    tested, and deployed through AI-driven pull requests. Our platform integrates with GitHub, GitLab, and cloud
+                    providers to deliver end-to-end automation.</p>
+                <div style="margin-top: 28px;">
+                    <a href="#" style="color:#00F2FF;">Explore Whitepaper →</a>
+                </div>
+            </div>
+            <div class="stats" style="flex:1; min-width: 240px;">
+                <div class="stat">
+                    <div class="stat-number">85%</div>
+                    <div>Faster Dev Cycles</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">99.9%</div>
+                    <div>Test Reliability</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div>Horizontal Scaling</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Integration -->
+    <section class="tech-stack" id="tech">
+        <h2 class="section-title">Integrates with modern stack</h2>
+        <p class="section-sub">Works seamlessly with your favorite tools & frameworks</p>
+        <div class="tech-icons">
+            <span><i class="fab fa-react"></i> React</span>
+            <span><i class="fab fa-node-js"></i> Node.js</span>
+            <span><i class="fab fa-python"></i> Python/FastAPI</span>
+            <span><i class="fas fa-cloud"></i> AWS/Azure</span>
+            <span><i class="fab fa-docker"></i> Docker/K8s</span>
+            <span><i class="fas fa-database"></i> PostgreSQL</span>
+            <span><i class="fab fa-github"></i> GitHub Actions</span>
+        </div>
+    </section>
+
+
+    <!-- Team / Advisors (adds credibility) -->
+    <section class="team">
+        <h2 class="section-title">Built by engineers, for AI-native teams</h2>
+        <p class="section-sub">Core contributors from top engineering & AI research</p>
+        <div class="team-grid">
+            <div class="member">
+                <i class="fas fa-user-astronaut"></i>
+                <h4>Dr. Elena Voss</h4>
+                <p>Ex-DeepMind, AI Architect</p>
+            </div>
+            <div class="member">
+                <i class="fas fa-laptop-code"></i>
+                <h4>Marcus Chen</h4>
+                <p>Principal Engineer, ex-Uber</p>
+            </div>
+            <div class="member">
+                <i class="fas fa-brain"></i>
+                <h4>Sophia Laurent</h4>
+                <p>ML Systems, Stanford</p>
+            </div>
+            <div class="member">
+                <i class="fas fa-chalkboard-user"></i>
+                <h4>James Okafor</h4>
+                <p>DevRel & Open Source</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Newsletter / final engagement -->
+    <div style="text-align: center; padding: 20px 6% 60px;">
+        <div style="background: linear-gradient(125deg, #0a1022, #03060c); border-radius: 48px; padding: 48px 24px; border: 1px solid #1f2a48;">
+            <h2 style="font-size: 2rem;">Ready to ship with AI agents?</h2>
+            <p style="margin: 16px auto; max-width: 500px;">Join the next generation of AI-powered software engineering.</p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="dashboard.html" class="cta-btn">Launch Dashboard</a>
+                <a href="#" class="cta-outline cta-btn" style="background: transparent;">Request demo</a>
+            </div>
         </div>
     </div>
 
-    <!-- Orchestration Fullscreen Flow -->
-    <div id="orchestrationScreen" class="orchestration-overlay">
-        <h2 style="margin-bottom:20px;">⚡ Building Your Application</h2>
-        <div class="flow-container" id="flowContainer">
-            <div class="flow-node">🧠 Architect</div>
-            <div class="flow-line"></div>
-            <div class="flow-node">🎨 Frontend</div>
-            <div class="flow-line"></div>
-            <div class="flow-node">⚙️ Backend</div>
-            <div class="flow-line"></div>
-            <div class="flow-node">🚀 Deploy</div>
+    <footer>
+        <div class="footer-links">
+            <a href="#">Documentation</a>
+            <a href="#">API Reference</a>
+            <a href="#">Changelog</a>
+            <a href="#">Security</a>
+            <a href="#">GitHub</a>
+            <a href="#">Twitter</a>
         </div>
-        <div class="build-status" id="buildStatus">Initializing agents...</div>
-        <div class="final-result" id="finalResult">
-            <h3 style="color:#00F2FF;">✅ App Deployed</h3>
-            <p>Your app is live at:</p>
-            <a id="appUrl" target="_blank" style="color:#FFD966; font-weight:600;"></a>
-        </div>
-        <button class="back-btn" id="backBtn">← Back to Dashboard</button>
-    </div>
+        <p>© 2026 Ecclesia Platform — Multi-Agent Engineering. All rights reserved.</p>
+        <p style="margin-top: 12px; font-size: 0.75rem; color: #4f6085;"><i class="fas fa-microchip"></i> Orchestrated by Architect, Developer, Tester — truly collaborative AI.</p>
+    </footer>
 
-    <div class="app-layout">
-        <main class="main-panel">
-            <div class="top-glass">
-                <div class="logo-area-compact">
-                    <div class="logo-icon"><i class="fas fa-waveform"></i></div>
-                    <span>ECCLESIA · Neural Orchestrator</span>
-                </div>
-                <div class="badge-pulse"><i class="fas fa-bolt"></i> v2.0 · Active Core <span style="color:#00F2FF;">∞</span></div>
-                <div class="user-avatar">
-                    <i class="fas fa-cog" style="color:#9AAEBF; cursor:pointer;" id="settingsIcon"></i>
-                    <img src="https://ui-avatars.com/api/?name=AI&background=00F2FF&color=000&bold=true&size=32" style="width:36px;height:36px;border-radius:50%;border:1px solid #00F2FF;">
-                </div>
-            </div>
-
-            <div class="dashboard-container">
-                <div class="grid-dynamic">
-                    <!-- Mission Prompt -->
-                    <div class="glass-card full-span">
-                        <div class="card-head"><i class="fas fa-comment-dots" style="color:#00F2FF;"></i> Mission Prompt</div>
-                        <div class="card-body">
-                            <textarea id="promptInput" class="prompt-field" rows="2" placeholder="Describe your software architecture, e.g., 'Build a real-time collaborative whiteboard with AI assistant and version control...'"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Tech Stack -->
-                    <div class="glass-card stack-span">
-                        <div class="card-head"><i class="fas fa-layer-group"></i> Tech Stack</div>
-                        <div class="card-body" id="stackContainer"></div>
-                    </div>
-
-                    <!-- AI Roles -->
-                    <div class="glass-card roles-span">
-                        <div class="card-head"><i class="fas fa-microchip"></i> Agent Roles & Models</div>
-                        <div class="card-body" id="rolesContainer"></div>
-                    </div>
-
-                    <!-- Terminal Logs -->
-                    <div class="glass-card term-span">
-                        <div class="card-head"><i class="fas fa-terminal"></i> Live Orchestration Log</div>
-                        <div class="term-window">
-                            <div class="term-header"><i class="fas fa-circle" style="color:#00F2FF; font-size: 0.5rem;"></i> ecclesia.stream</div>
-                            <div class="term-body" id="terminalLogs"></div>
-                        </div>
-                    </div>
-
-                    <!-- Active Assignment -->
-                    <div class="glass-card assign-span">
-                        <div class="card-head"><i class="fas fa-user-astronaut"></i> Active Assignments</div>
-                        <div class="card-body" id="assignedSummary"></div>
-                    </div>
-
-                    <div class="full-span" style="display: flex; justify-content: center;">
-                        <button id="orchestrateBtn" class="orchestrate-btn"><i class="fas fa-arrow-right-to-bracket"></i> Run Orchestration</button>
-                    </div>
-                </div>
-
-                <div class="mini-stats">
-                    <div class="stat-block"><i class="fas fa-dharmachakra" style="color:#00F2FF;"></i> <strong>Architect Agent</strong><br><span style="font-size:0.7rem;">System topology & edge design</span></div>
-                    <div class="stat-block"><i class="fas fa-code"></i> <strong>Engineering Core</strong><br><span style="font-size:0.7rem;">Full-stack synthesis</span></div>
-                    <div class="stat-block"><i class="fas fa-brain"></i> <strong>Validation Layer</strong><br><span style="font-size:0.7rem;">Heuristic & coherence</span></div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <script src="script.js"></script>
+    <!-- tiny live simulation for pipeline steps animation (optional) -->
+    <script src="script/indexscript.js"></script>
 </body>
+
 </html>

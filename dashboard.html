@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+    <title>Ecclesia | AI Orchestrator — Neural Core</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+    <!-- API Modal (optional but present) -->
+    <div class="modal-blur" id="apiModal">
+        <div class="modal-panel">
+            <h3 style="margin-bottom: 12px;"><i class="fas fa-key" style="color:#00F2FF;"></i> API Credentials</h3>
+            <input type="text" id="openaiKey" placeholder="OpenAI Key (optional)">
+            <input type="text" id="geminiKey" placeholder="Gemini Key (optional)">
+            <div class="flex-btns">
+                <button id="demoModeBtn" class="btn-outline"><i class="fas fa-flask"></i> Demo Mode</button>
+                <button id="saveKeysBtn" class="btn-primary">Save</button>
+            </div>
+            <p style="font-size: 0.65rem; margin-top: 1rem; color: #6c86a3;">Local storage only · simulated orchestration</p>
+        </div>
+    </div>
+
+    <!-- Orchestration Fullscreen Flow -->
+    <div id="orchestrationScreen" class="orchestration-overlay">
+        <h2 style="margin-bottom:20px;">⚡ Building Your Application</h2>
+        <div class="flow-container" id="flowContainer">
+            <div class="flow-node">🧠 Architect</div>
+            <div class="flow-line"></div>
+            <div class="flow-node">🎨 Frontend</div>
+            <div class="flow-line"></div>
+            <div class="flow-node">⚙️ Backend</div>
+            <div class="flow-line"></div>
+            <div class="flow-node">🚀 Deploy</div>
+        </div>
+        <div class="build-status" id="buildStatus">Initializing agents...</div>
+        <div class="final-result" id="finalResult">
+            <h3 style="color:#00F2FF;">✅ App Deployed</h3>
+            <p>Your app is live at:</p>
+            <a id="appUrl" target="_blank" style="color:#FFD966; font-weight:600;"></a>
+        </div>
+        <button class="back-btn" id="backBtn">← Back to Dashboard</button>
+    </div>
+
+    <div class="app-layout">
+        <main class="main-panel">
+            <div class="top-glass">
+                <div class="logo-area-compact">
+                    <div class="logo-icon"><i class="fas fa-waveform"></i></div>
+                    <span>ECCLESIA · Neural Orchestrator</span>
+                </div>
+                <div class="badge-pulse"><i class="fas fa-bolt"></i> v2.0 · Active Core <span style="color:#00F2FF;">∞</span></div>
+                <div class="user-avatar">
+                    <i class="fas fa-cog" style="color:#9AAEBF; cursor:pointer;" id="settingsIcon"></i>
+                    <img src="https://ui-avatars.com/api/?name=AI&background=00F2FF&color=000&bold=true&size=32" style="width:36px;height:36px;border-radius:50%;border:1px solid #00F2FF;">
+                </div>
+            </div>
+
+            <div class="dashboard-container">
+                <div class="grid-dynamic">
+                    <!-- Mission Prompt -->
+                    <div class="glass-card full-span">
+                        <div class="card-head"><i class="fas fa-comment-dots" style="color:#00F2FF;"></i> Mission Prompt</div>
+                        <div class="card-body">
+                            <textarea id="promptInput" class="prompt-field" rows="2" placeholder="Describe your software architecture, e.g., 'Build a real-time collaborative whiteboard with AI assistant and version control...'"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack -->
+                    <div class="glass-card stack-span">
+                        <div class="card-head"><i class="fas fa-layer-group"></i> Tech Stack</div>
+                        <div class="card-body" id="stackContainer"></div>
+                    </div>
+
+                    <!-- AI Roles -->
+                    <div class="glass-card roles-span">
+                        <div class="card-head"><i class="fas fa-microchip"></i> Agent Roles & Models</div>
+                        <div class="card-body" id="rolesContainer"></div>
+                    </div>
+
+                    <!-- Terminal Logs -->
+                    <div class="glass-card term-span">
+                        <div class="card-head"><i class="fas fa-terminal"></i> Live Orchestration Log</div>
+                        <div class="term-window">
+                            <div class="term-header"><i class="fas fa-circle" style="color:#00F2FF; font-size: 0.5rem;"></i> ecclesia.stream</div>
+                            <div class="term-body" id="terminalLogs"></div>
+                        </div>
+                    </div>
+
+                    <!-- Active Assignment -->
+                    <div class="glass-card assign-span">
+                        <div class="card-head"><i class="fas fa-user-astronaut"></i> Active Assignments</div>
+                        <div class="card-body" id="assignedSummary"></div>
+                    </div>
+
+                    <div class="full-span" style="display: flex; justify-content: center;">
+                        <button id="orchestrateBtn" class="orchestrate-btn"><i class="fas fa-arrow-right-to-bracket"></i> Run Orchestration</button>
+                    </div>
+                </div>
+
+                <div class="mini-stats">
+                    <div class="stat-block"><i class="fas fa-dharmachakra" style="color:#00F2FF;"></i> <strong>Architect Agent</strong><br><span style="font-size:0.7rem;">System topology & edge design</span></div>
+                    <div class="stat-block"><i class="fas fa-code"></i> <strong>Engineering Core</strong><br><span style="font-size:0.7rem;">Full-stack synthesis</span></div>
+                    <div class="stat-block"><i class="fas fa-brain"></i> <strong>Validation Layer</strong><br><span style="font-size:0.7rem;">Heuristic & coherence</span></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
